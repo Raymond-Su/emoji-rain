@@ -6,6 +6,9 @@
 
 <p align="center"><i>Emoji is a web browser extension that makes a webpage rain emojis!</i></p>
 
+<p align="center">
+  <img src="https://github.com/Raymond-Su/emoji-rain/blob/master/demo.png" width="150" height="150"/>
+</p>
 <br/><br/>
 
 ### Installation Instructions
