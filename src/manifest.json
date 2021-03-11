@@ -1,0 +1,27 @@
+{
+  "name": "Emoji Rain",
+  "description": "A chrome extension that makes it rain emojis",
+  "version": "0.0.1",
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": ["activeTab", "storage"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "32": "icon-32.png"
+    }
+  },
+  "icons": {
+    "16": "icon-16.png",
+    "128": "icon-128.png"
+  },
+  "manifest_version": 3,
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "css": [],
+      "js": ["contentScript.js"]
+    }
+  ]
+}
