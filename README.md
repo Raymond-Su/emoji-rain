@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/Raymond-Su/emoji-rain/blob/master/logo.png width="75" height="75"/>
+  <img src="https://github.com/Raymond-Su/emoji-rain/blob/master/logo.png" width="75" height="75"/>
 </p>
 
 <h1 align="center">Emoji Rain</h1>
