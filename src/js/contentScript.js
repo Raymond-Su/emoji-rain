@@ -1,3 +1,5 @@
+import { EMOJI_UNICODE } from "./data";
+
 const RAINIT_MAX_DROPS = 100;
 const AG = 9.81; // Acceleration of gravity
 
@@ -100,12 +102,15 @@ class RainEngine {
 
   /**
    * @param {string} - emoji unicode
+   * @param {boolean} - random
    * @return {RainDrop[]} - array of raindrops, num is maxDrops
    */
-  generateEmojiDrops(emojiUnicode) {
+  generateEmojiDrops(emojiUnicode, random) {
     const rainDrops = [];
-    const emoji = this.getEmojiFromCodePoint(emojiUnicode);
     for (let i = 0; i < RAINIT_MAX_DROPS; i++) {
+      const emoji = this.getEmojiFromCodePoint(
+        random ? EMOJI_UNICODE[Math.floor(Math.random() * EMOJI_UNICODE.length)] : emojiUnicode
+      );
       rainDrops.push(new RainDrop(emoji, this.canvas.height, this.canvas.width));
     }
     return rainDrops;
@@ -142,10 +147,12 @@ class RainEngine {
   window.addEventListener("resize", () => rainEngine.resize());
 
   chrome.runtime.onMessage.addListener((message, sender, callback) => {
-    if (message.type === "TOGGLE_RAIN") {
-      const rainDrops = rainEngine.generateEmojiDrops(message.payload);
+    const { type, payload } = message;
+    if (type == "TOGGLE_RAIN") {
+      const randomEmojis = payload == "RANDOM";
+      const rainDrops = rainEngine.generateEmojiDrops(payload, randomEmojis);
       rainEngine.start(rainDrops);
-    } else {
+    } else if (type == "TOGGLE_RAIN_OFF") {
       rainEngine.stop();
     }
   });

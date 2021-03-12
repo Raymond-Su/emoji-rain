@@ -11,7 +11,6 @@ const options = {
   mode: "production",
   entry: {
     popup: path.join(__dirname, "src", "js", "popup.js"),
-    background: path.join(__dirname, "src", "js", "background.js"),
     contentScript: path.join(__dirname, "src", "js", "contentScript.js"),
   },
   output: {

@@ -1,4 +1,4 @@
-export const RAINIT_EMOJI_CODE = [
+export const EMOJI_UNICODE = [
   "0023 20E3",
   "0030 20E3",
   "0031 20E3",

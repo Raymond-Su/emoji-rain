@@ -1,14 +1,27 @@
 import "../css/popup.css";
-import { RAINIT_EMOJI_CODE } from "./data";
+import { EMOJI_UNICODE } from "./data";
+
+let lastEmoji = "";
+
+function handleEmojiButtonClick(emoji) {
+  chrome.tabs.query({ active: true, currentWindow: true }, function (tab) {
+    chrome.tabs.sendMessage(tab[0].id, { type: "TOGGLE_RAIN_OFF" });
+    if (lastEmoji != emoji) {
+      chrome.tabs.sendMessage(tab[0].id, { type: "TOGGLE_RAIN", payload: emoji });
+    }
+
+    lastEmoji = lastEmoji == emoji ? "" : emoji;
+  });
+}
 
 document.addEventListener("DOMContentLoaded", function () {
   const emojiContainer = document.getElementById("emojis");
 
-  for (const emoji of RAINIT_EMOJI_CODE) {
+  for (const emoji of EMOJI_UNICODE) {
     const emojiButton = document.createElement("button");
-    emojiButton.addEventListener("click", () => chrome.runtime.sendMessage({ type: "TOGGLE_RAIN", payload: emoji }));
+    emojiButton.addEventListener("click", () => handleEmojiButtonClick(emoji));
     emojiButton.innerHTML = `&#x${emoji.split(" ")[0]};`;
-    emojiButton.className = "emoji-button";
+    emojiButton.className = "emoji-btn";
 
     emojiContainer.appendChild(emojiButton);
   }
