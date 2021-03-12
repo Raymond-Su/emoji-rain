@@ -16,6 +16,7 @@ function handleEmojiButtonClick(emoji) {
 
 document.addEventListener("DOMContentLoaded", function () {
   const emojiContainer = document.getElementById("emojis");
+  const randomEmojiBtn = document.getElementById("random-btn");
 
   for (const emoji of EMOJI_UNICODE) {
     const emojiButton = document.createElement("button");
@@ -25,4 +26,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     emojiContainer.appendChild(emojiButton);
   }
+
+  randomEmojiBtn.addEventListener("click", () => handleEmojiButtonClick("RANDOM"));
 });
