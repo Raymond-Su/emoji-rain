@@ -1,6 +1,6 @@
 import { EMOJI_UNICODE } from "./data";
 
-const RAINIT_MAX_DROPS = 100;
+const RAIN_MAX_DROPS = 50;
 const AG = 9.81; // Acceleration of gravity
 
 const rainEngineCSS = {
@@ -107,7 +107,7 @@ class RainEngine {
    */
   generateEmojiDrops(emojiUnicode, random) {
     const rainDrops = [];
-    for (let i = 0; i < RAINIT_MAX_DROPS; i++) {
+    for (let i = 0; i < RAIN_MAX_DROPS; i++) {
       const emoji = this.getEmojiFromCodePoint(
         random ? EMOJI_UNICODE[Math.floor(Math.random() * EMOJI_UNICODE.length)] : emojiUnicode
       );
@@ -118,7 +118,7 @@ class RainEngine {
 
   drawRain(rainDrops) {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    for (let i = 0; i < RAINIT_MAX_DROPS; i++) {
+    for (let i = 0; i < RAIN_MAX_DROPS; i++) {
       rainDrops[i].drawDrop(this.ctx);
       rainDrops[i].move(this.canvas.height, this.canvas.width);
     }
